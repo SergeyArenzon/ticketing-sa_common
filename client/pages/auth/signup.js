@@ -1,13 +1,24 @@
 import React,{useState} from 'react'
+import Router from 'next/router'
+import useRequest from '../../hooks/use-request';
 
 export default function signup() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const { doRequest, errors} = useRequest({
+        url: '/api/users/signup',
+        method: 'post',
+        body: {
+            email, password
+        }
+    })
 
 
-    const onSubmit = (e) => {
+    const onSubmit = async(e) => {
         e.preventDefault();
-        console.log(email,password);
+        await Router.push('/');
+        doRequest();
+
     }
   return (
     <form onSubmit={onSubmit}>
@@ -20,6 +31,7 @@ export default function signup() {
             <label>Password</label>
             <input className="form-control" value={password} onChange={e => setPassword(e.target.value)}/>
         </div>
+        {errors}
         <button className="btn btn-primary"> Sign Up</button>
     </form>
   )
