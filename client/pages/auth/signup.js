@@ -10,15 +10,14 @@ export default function signup() {
         method: 'post',
         body: {
             email, password
-        }
+        },
+        onSuccess: () => Router.push('/')
     })
 
 
     const onSubmit = async(e) => {
         e.preventDefault();
-        await Router.push('/');
-        doRequest();
-
+        await doRequest();
     }
   return (
     <form onSubmit={onSubmit}>
