@@ -1,7 +1,7 @@
 import buildClient from "../api/build-client";
 
 const LandingPage = ({currentUser}) => {
-  return <h1>{JSON.stringify(currentUser)}</h1>
+  return currentUser ? <h1>You are signed in</h1> : <h1>You are NOT signed in</h1>
 };
 
 
