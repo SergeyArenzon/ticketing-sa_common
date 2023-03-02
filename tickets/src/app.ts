@@ -4,6 +4,7 @@ import { json } from 'body-parser'
 import {errorHandler,NotFoundError, currentUser} from "@ticketssa/common";
 import cookieSession from 'cookie-session';
 import { createTicketRouter } from './routes/new';
+import { showTicketRouter } from './routes/show';
 
 
 
@@ -17,6 +18,7 @@ app.use(cookieSession({
 
 app.use(currentUser);
 app.use(createTicketRouter);
+app.use(showTicketRouter);
 
 app.all('*',async () => {
     throw new NotFoundError()
